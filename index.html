@@ -80,6 +80,26 @@
         </div>
 
         <script>
+         function setTrackingConsent(){
+             // Change with your shop details
+             MYSHOPIFY_DOMAIN = 'clippy4ever.myshopify.com'
+             TOKEN = '29c878d9106f6e9f8779e83a6ad963c2'
+
+             return fetch(`https://${MYSHOPIFY_DOMAIN}/api/unstable/graphql.json`, {
+                 "headers": {
+                     "content-type": "application/json",
+                     "x-shopify-storefront-access-token": TOKEN
+                 },
+                 "body": `{"query":"query {consentManagement { cookies(visitorConsent: {}) {answersCookie trackingConsentCookie}}}","variables":{}}`,
+                 "method": "POST",
+             }).then((r) => r.json()).then((j) => {
+                 document.cookie = "_tracking_consent=" + j.data.consentManagement.cookies.trackingConsentCookie;
+                 document.cookie = "_cmp_a=" + j.data.consentManagement.cookies.answersCookie;
+                 console.log("Consent set. raw body:", j.data)
+             });
+         }
+
+         setTrackingConsent()
          function getProducts(){
              return fetch("https://clippy4ever.myshopify.com/api/2023-04/graphql.json", {
                  "headers": {
