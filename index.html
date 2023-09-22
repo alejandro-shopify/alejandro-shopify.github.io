@@ -79,23 +79,33 @@
             </button>
         </div>
 
+        <script src="https://cdn.shopify.com/shopifycloud/privacy-banner/storefront-banner.js?shop=clippy4ever.myshopify.com"></script>
         <script>
-         function setTrackingConsent(){
-             // Change with your shop details
-             MYSHOPIFY_DOMAIN = 'clippy4ever.myshopify.com'
-             TOKEN = '29c878d9106f6e9f8779e83a6ad963c2'
+         // Change with your shop details
+         MYSHOPIFY_DOMAIN = 'clippy4ever.myshopify.com'
+         SF_API_TOKEN = '29c878d9106f6e9f8779e83a6ad963c2'
 
+         function setTrackingConsent(){
              return fetch(`https://${MYSHOPIFY_DOMAIN}/api/unstable/graphql.json`, {
                  "headers": {
                      "content-type": "application/json",
-                     "x-shopify-storefront-access-token": TOKEN
+                     "x-shopify-storefront-access-token": SF_API_TOKEN
                  },
                  "body": `{"query":"query {consentManagement { cookies(visitorConsent: {}) {answersCookie trackingConsentCookie}}}","variables":{}}`,
                  "method": "POST",
              }).then((r) => r.json()).then((j) => {
                  document.cookie = "_tracking_consent=" + j.data.consentManagement.cookies.trackingConsentCookie;
                  document.cookie = "_cmp_a=" + j.data.consentManagement.cookies.answersCookie;
+                 document.cookie = "sanity=" + Date.now();
+
                  console.log("Consent set. raw body:", j.data)
+
+                 // NOW we can load the banner
+                 privacyBanner.loadBanner(
+                     MYSHOPIFY_DOMAIN,
+                     SF_API_TOKEN
+                 );
+
              });
          }
 
@@ -112,7 +122,7 @@
                      "sec-fetch-dest": "empty",
                      "sec-fetch-mode": "cors",
                      "sec-fetch-site": "cross-site",
-                     "x-shopify-storefront-access-token": "68bee16e5b459a006e2e23da7091e455"
+                     "x-shopify-storefront-access-token": SF_API_TOKEN
                  },
                  "referrer": "http://localhost:3000/",
                  "referrerPolicy": "strict-origin-when-cross-origin",
@@ -146,7 +156,7 @@
                          "sec-fetch-dest": "empty",
                          "sec-fetch-mode": "cors",
                          "sec-fetch-site": "cross-site",
-                         "x-shopify-storefront-access-token": "68bee16e5b459a006e2e23da7091e455"
+                         "x-shopify-storefront-access-token": SF_API_TOKEN
                      },
                      "referrer": "http://localhost:3000/",
                      "referrerPolicy": "strict-origin-when-cross-origin",
@@ -163,6 +173,5 @@
              };
          })
         </script>
-        <script src="/storefront-banner.js"></script>
     </body>
 </html>
