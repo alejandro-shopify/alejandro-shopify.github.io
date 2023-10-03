@@ -2,6 +2,7 @@
 <html>
     <head>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📎</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>My Headless Storefront</title>
     </head>
     <style>
@@ -30,11 +31,11 @@
          width: 100vw;
          height: 100vh;
          overflow: hidden;
-         z-index: -1000;
+         z-index: +1000;
      }
 
      #product {
-         width: 50em;
+         width: 20em;
          height: 20em;
          border: 5px dashed green;
          background-color: black;
@@ -47,24 +48,29 @@
          height: 5em;
          cursor: pointer;
      }
+
+     /* smol screen, smol clippy */
+     header img {
+         width: 5em;
+         height: 5em;
+     }
+
+     @media screen and (min-width: 665px) {
+         /* We can afford to make clippy bigger, neat screen! */
+         header img {
+             width: 200px;
+             height: 200px;
+         }
+     }
     </style>
     <body>
         <header>
-            <image src="/assets/clippy.gif" width="200" height="200"></iframe>
+            <img src="/assets/clippy.gif"></img>
             <marquee>
                 <h1>Clippy's custom storefront</h1>
             </marquee>
-            <image src="/assets/clippy.gif" width="200" height="200"></iframe>
+            <img src="/assets/clippy.gif"></img>
         </header>
-
-        <marquee class="bouncer"
-            direction="down"
-            width="100%"
-            height="100%"
-            behavior="alternate">
-            So much API
-            <marquee behavior="alternate"> Such headless! </marquee>
-        </marquee>
 
         <h2>Buy something!</h2>
 
@@ -80,6 +86,16 @@
             </button>
         </div>
 
+        <marquee class="bouncer"
+            direction="down"
+            width="100%"
+            height="100%"
+            behavior="alternate">
+            So much API
+            <marquee behavior="alternate"> Such headless! </marquee>
+        </marquee>
+
+        <script src="/load-products.js"></script>
         <script src="/storefront-banner.js"></script>
         <script>
          // Change with your shop details
