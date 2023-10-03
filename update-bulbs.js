@@ -5,9 +5,9 @@ const bulbConsentSaleOfData = document.getElementById('consent-s');
 const greenCSS = 'saturate(50) hue-rotate(87deg)';
 const redCSS = 'saturate(50) hue-rotate(338deg)';
 
-function getConsentColor(consent){
-    if(consent == 'no') return redCSS;
-    if(consent == 'yess') return greenCSS;
+function getConsentColor(val){
+    if(val == 'no') return redCSS;
+    if(val == 'yes') return greenCSS;
     return '';
 }
 
