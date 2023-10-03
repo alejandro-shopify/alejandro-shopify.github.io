@@ -116,17 +116,6 @@
          MYSHOPIFY_DOMAIN = 'clippy4ever.store'
          SF_API_TOKEN = '29c878d9106f6e9f8779e83a6ad963c2'
 
-         function setTrackingConsent(){
-             window.Shopify.customerPrivacy.setTrackingConsent({
-                 "marketing": true,
-                 "analytics": true,
-                 "preferences": true,
-                 "headlessStorefront": true,
-                 "rootDomain": "clippy4ever.myshopify.com",
-                 "storefrontAccessToken": "29c878d9106f6e9f8779e83a6ad963c2"
-             }, () => console.log("stc: done"))
-         }
-
          // Run banner if needed
           privacyBanner.loadBanner(MYSHOPIFY_DOMAIN, SF_API_TOKEN);
 
