@@ -66,14 +66,26 @@
     </style>
     <body>
         <header>
-            <img src="/assets/clippy.gif"></img>
+            <img src="/assets/clippy.gif"/>
             <marquee>
                 <h1>Clippy's custom storefront</h1>
             </marquee>
-            <img src="/assets/clippy.gif"></img>
+            <img src="/assets/clippy.gif"/>
         </header>
 
         <h2>Buy something!</h2>
+
+        <div>
+            <p>
+                Current consent:
+                <span>
+                    <img width="30px" id="consent-m" src="/assets/bulb.png"/>
+                    <img width="30px" id="consent-a" src="/assets/bulb.png"/>
+                    <img width="30px" id="consent-p" src="/assets/bulb.png"/>
+                    <img width="30px" id="consent-s" src="/assets/bulb.png"/>
+                </span>
+            </p>
+        </div>
 
         <div id="product">
             <h2 id="productTitle">
@@ -98,6 +110,7 @@
 
         <script src="/load-products.js"></script>
         <script src="/storefront-banner.js"></script>
+        <script src="/update-bulbs.js"></script>
         <script>
          // Change with your shop details
          MYSHOPIFY_DOMAIN = 'clippy4ever.store'
