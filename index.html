@@ -120,7 +120,7 @@
          const SF_API_TOKEN = '29c878d9106f6e9f8779e83a6ad963c2'
 
          // Run banner if needed
-         privacyBanner.loadBanner(MYSHOPIFY_DOMAIN, SF_API_TOKEN, CHECKOUT_DOMAIN, STOREFRONT_DOMAIN);
+         privacyBanner.loadBanner({shopDomain: MYSHOPIFY_DOMAIN, storefrontAccessToken: SF_API_TOKEN, checkoutRootDomain: CHECKOUT_DOMAIN, storefrontRootDomain: STOREFRONT_DOMAIN});
 
         </script>
     </body>
