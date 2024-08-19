@@ -4,6 +4,7 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📎</text></svg>">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="shopify-cmp-metadata" content="purposes=p1a0m1t0;display_banner=1;merchant_geo=CA;sale_of_data_region=1">
+        <meta charset="utf-8">
         <title>My Headless Storefront</title>
     </head>
     <style>
@@ -108,6 +109,10 @@
                     <img width="30px" id="consent-p" src="/assets/bulb.png"/>
                     <img width="30px" id="consent-s" src="/assets/bulb.png"/>
                 </span>
+                @
+                <span id="region-flag">
+                    region unknown
+                </span>
             </p>
         </div>
 
@@ -139,7 +144,7 @@
 
         <script src="https://cdn.shopify.com/shopifycloud/privacy-banner/storefront-banner.js?shop=clippy4ever.myshopify.com"></script>
         <script src="/load-products.js"></script>
-        <script src="/update-bulbs.js"></script>
+        <script src="/update-consent.js"></script>
         <script>
          // Change with your shop details
          const MYSHOPIFY_DOMAIN = 'clippy4ever.myshopify.com'
