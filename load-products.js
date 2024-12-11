@@ -14,7 +14,7 @@ function getProducts(){
         },
         "referrer": "http://localhost:3000/",
         "referrerPolicy": "strict-origin-when-cross-origin",
-        "body": "{\"query\":\"query {\\n  products(first: 3) {\\n    nodes {\\n      id\\n      title\\n      handle\\n      variants(first: 1) {\\n        edges {\\n          node {\\n            id\\n          }\\n        }\\n      }\\n    }\\n  }\\n}\",\"variables\":{\"input\":{\"lines\":{\"merchandiseId\":\"gid://shopify/Product/7990365814806\",\"quantity\":1}}}}",
+        "body": "{\"query\":\"query {\\n  products(first: 5) {\\n    nodes {\\n      id\\n      title\\n      handle\\n      variants(first: 1) {\\n        edges {\\n          node {\\n            id\\n          }\\n        }\\n      }\\n    }\\n  }\\n}\",\"variables\":{\"input\":{\"lines\":{\"merchandiseId\":\"gid://shopify/Product/10480362782742\",\"quantity\":1}}}}",
         "method": "POST",
         "mode": "cors",
         "credentials": "omit"
@@ -31,7 +31,7 @@ function getProducts(){
 }
 
 getProducts().then((products) => {
-    document.getElementById('productTitle').innerText = products[0].title;
+    document.getElementById('productTitle').innerText = products[4].title;
     document.getElementById('buyNowButton').onclick = () => {
         fetch("https://clippy4ever.myshopify.com/api/2023-04/graphql.json", {
             "headers": {
@@ -48,7 +48,7 @@ getProducts().then((products) => {
             },
             "referrer": "http://localhost:3000/",
             "referrerPolicy": "strict-origin-when-cross-origin",
-            "body": "{\"query\":\"mutation cartCreate {\\n  cartCreate(\\n    input: {\\n      lines: [\\n        {\\n          quantity: 1\\n          merchandiseId: \\\"" + products[0].variant + "\\\"\\n        }\\n      ]\\n    }\\n  ) {\\n    cart {\\n\\t\\t\\tcheckoutUrl\\n    }\\n    userErrors {\\n      field\\n      message\\n    }\\n  }\\n}\",\"variables\":{\"input\":{\"lines\":{\"merchandiseId\":\"gid://shopify/Product/7990365814806\",\"quantity\":1}}},\"operationName\":\"cartCreate\"}",
+            "body": "{\"query\":\"mutation cartCreate {\\n  cartCreate(\\n    input: {\\n      lines: [\\n        {\\n          quantity: 1\\n          merchandiseId: \\\"" + products[4].variant + "\\\"\\n        }\\n      ]\\n    }\\n  ) {\\n    cart {\\n\\t\\t\\tcheckoutUrl\\n    }\\n    userErrors {\\n      field\\n      message\\n    }\\n  }\\n}\",\"variables\":{\"input\":{\"lines\":{\"merchandiseId\":\"gid://shopify/Product/10480362782742\",\"quantity\":1}}},\"operationName\":\"cartCreate\"}",
             "method": "POST",
             "mode": "cors",
             "credentials": "omit"
